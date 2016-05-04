@@ -6,7 +6,7 @@ A MongoDB implementation of [block-sequence](https://www.npmjs.com/package/block
 var BlockArray = require('block-sequence').BlockArray
 var init = require('block-sequence-mongo')
 
-// Initialise the PostgreSQL Block Sequence Driver
+// Initialise the Mongo Block Sequence Driver
 init({ url: 'mongodb://127.0.0.1/bs_test', options: {} }, function(err, driver) {
     if (err) throw err
 
