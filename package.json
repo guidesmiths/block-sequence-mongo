@@ -29,9 +29,9 @@
     "tap-spec": "^4.1.1"
   },
   "dependencies": {
-    "async": "^2.0.0-rc.3",
-    "debug": "^2.2.0",
-    "lodash": "^4.11.1",
+    "async": "^2.1.4",
+    "debug": "^2.6.0",
+    "lodash": "^4.17.4",
     "mongodb": "^2.1.18",
     "safe-json-parse": "^4.0.0"
   },
