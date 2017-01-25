@@ -4,10 +4,10 @@
   "description": "A mongo implementation of block-sequence",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/compliance.tests.js | tap-spec",
+    "test": "node test/compliance.tests.js | tap-spec",
     "lint": "eslint .",
     "prepush": "npm run lint && npm test",
-    "docker": "docker run --detach --publish 5432:5432 --name bs-mongo mongo"
+    "docker": "docker run --detach --publish 27017:27017 --name mongo mvertes/alpine-mongo"
   },
   "keywords": [
     "Block",
@@ -20,10 +20,12 @@
   "license": "ISC",
   "devDependencies": {
     "block-sequence-compliance-tests": "0.1.0",
-    "eslint": "^0.24.1",
-    "eslint-config-imperative": "0.0.6",
-    "eslint-plugin-imperative": "0.0.2",
-    "husky": "^0.11.4",
+    "codeclimate-test-reporter": "^0.4.0",
+    "eslint": "^3.12.2",
+    "eslint-config-imperative": "^1.0.0",
+    "eslint-plugin-imperative": "^1.0.0",
+    "husky": "^0.13.0",
+    "istanbul": "^0.4.5",
     "tap-spec": "^4.1.1"
   },
   "dependencies": {
@@ -34,7 +36,7 @@
     "safe-json-parse": "^4.0.0"
   },
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
   "repository": {
     "type": "git",
@@ -43,5 +45,5 @@
   "bugs": {
     "url": "https://github.com/guidesmiths/block-sequence-mongo/issues"
   },
-  "homepage": "https://github.com/guidesmiths/block-sequence-mongo#readme"
+  "homepage": "https://guidesmiths.github.io/block-sequence-mongo/"
 }
