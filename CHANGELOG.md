@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.1.0]
+## [1.0.1]
 ### Changed
 - Fixed race condition which could result in duplicate sequences
 
