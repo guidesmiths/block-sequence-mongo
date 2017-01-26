@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [1.1.0]
 ### Changed
 - Erroring when sequence exceeds Number.MAX_SAFE_INT
 
