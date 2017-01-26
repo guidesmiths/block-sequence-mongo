@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased]
+### Changed
+- Fixed missing err check
+
 ## [1.0.1]
 ### Changed
 - Fixed race condition which could result in duplicate sequences

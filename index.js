@@ -71,11 +71,9 @@ module.exports = function init(config, cb) {
 
     function ensureCollection(cb) {
         debug('Ensuring gs_block_sequence collection')
-        db.collection('gs_block_sequence', function(err, _collection) {
-            collection = _collection
-            collection = db.collection('gs_block_sequence')
-            collection.createIndex({ name: 1 }, { unique: true, w: 1 }, cb)
-        })
+        collection = db.collection('gs_block_sequence')
+        collection = db.collection('gs_block_sequence')
+        collection.createIndex({ name: 1 }, { unique: true, w: 1 }, cb)
     }
 
     function connect(cb) {
