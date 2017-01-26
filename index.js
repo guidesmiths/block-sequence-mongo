@@ -24,6 +24,8 @@ module.exports = function init(config, cb) {
             { $setOnInsert: { name: name, value: value, metadata: metadata } },
             { upsert: true, returnOriginal: false },
             function(err, result) {
+                // Turns out there's no such thing as an atomic upsert in mongo
+                if (err && err.code === 11000) return ensure(options, cb)
                 if (err) return cb(err)
                 cb(null, _.chain({})
                           .defaultsDeep(result.value)
@@ -69,8 +71,11 @@ module.exports = function init(config, cb) {
 
     function ensureCollection(cb) {
         debug('Ensuring gs_block_sequence collection')
-        collection = db.collection('gs_block_sequence')
-        collection.createIndex('gs_block_sequence_name', { name: 1 }, { unique:true, w:1}, cb)
+        db.collection('gs_block_sequence', function(err, _collection) {
+            collection = _collection
+            collection = db.collection('gs_block_sequence')
+            collection.createIndex({ name: 1 }, { unique: true, w: 1 }, cb)
+        })
     }
 
     function connect(cb) {
