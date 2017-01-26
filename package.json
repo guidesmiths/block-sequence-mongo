@@ -1,6 +1,6 @@
 {
   "name": "block-sequence-mongo",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A mongo implementation of block-sequence",
   "main": "index.js",
   "scripts": {
