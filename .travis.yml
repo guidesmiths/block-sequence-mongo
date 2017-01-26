@@ -4,7 +4,6 @@ services:
   - docker
 
 before_install:
-  - sudo service mongo stop
   - docker run --detach --publish 27017:27017 --name mongo mvertes/alpine-mongo
   - sleep 10
 
