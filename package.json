@@ -21,7 +21,7 @@
   "author": "GuideSmiths",
   "license": "ISC",
   "devDependencies": {
-    "block-sequence-compliance-tests": "^1.1.0",
+    "block-sequence-compliance-tests": "^1.2.0",
     "codeclimate-test-reporter": "^0.4.0",
     "eslint": "^3.12.2",
     "eslint-config-imperative": "^1.0.0",
