@@ -6,6 +6,8 @@
   "scripts": {
     "test": "node test/compliance.tests.js | tap-spec",
     "lint": "eslint .",
+    "istanbul": "istanbul cover --report html --report lcov tape -- test/compliance.tests.js",
+    "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
     "prepush": "npm run lint && npm test",
     "docker": "docker run --detach --publish 27017:27017 --name mongo mvertes/alpine-mongo"
   },
