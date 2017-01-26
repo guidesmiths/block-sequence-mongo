@@ -6,6 +6,7 @@ var bigInt = require('big-integer')
 
 module.exports = function init(config, cb) {
 
+    if (Number.MAX_SAFE_INTEGER === undefined) Number.MAX_SAFE_INTEGER = 9007199254740991
     if (arguments.length === 1) return init({}, arguments[0])
     if (!config.url) return cb(new Error('url is required'))
 
