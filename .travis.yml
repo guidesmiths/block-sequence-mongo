@@ -1,0 +1,19 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - sudo service mongo stop
+  - docker run --detach --publish 27017:27017 --name mongo mvertes/alpine-mongo
+  - sleep 10
+
+language: node_js
+
+node_js:
+  - "0.10"
+  - "0.12"
+  - "4"
+  - "5"
+  - "6"
+  - "7"
