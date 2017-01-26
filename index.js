@@ -2,6 +2,7 @@ var debug = require('debug')('block-sequence:mongo')
 var MongoClient = require('mongodb').MongoClient
 var _ = require('lodash')
 var async = require('async')
+var bigInt = require('big-integer')
 
 module.exports = function init(config, cb) {
 
@@ -27,11 +28,14 @@ module.exports = function init(config, cb) {
                 // Turns out there's no such thing as an atomic upsert in mongo
                 if (err && err.code === 11000) return ensure(options, cb)
                 if (err) return cb(err)
-                cb(null, _.chain({})
-                          .defaultsDeep(result.value)
-                          .omit(['_id'])
-                          .value()
-                )
+                deserialize(result.value, function(err, sequence) {
+                    if (err) return cb(err)
+                    cb(null, _.chain({})
+                              .defaultsDeep(sequence)
+                              .omit(['_id'])
+                              .value()
+                    )
+                })
             }
         )
     }
@@ -48,12 +52,14 @@ module.exports = function init(config, cb) {
                 { upsert: true, returnOriginal: false },
                 function(err, result) {
                     if (err) return cb(err)
-                    var sequence = result.value
-                    cb(null, _.chain({ next: sequence.value - size + 1, remaining: size })
-                              .defaultsDeep(sequence)
-                              .omit(['_id', 'value'])
-                              .value()
-                    )
+                    deserialize(result.value, function(err, sequence) {
+                        if (err) return cb(err)
+                        cb(null, _.chain({ next: sequence.value - size + 1, remaining: size })
+                                  .defaultsDeep(sequence)
+                                  .omit(['_id', 'value'])
+                                  .value()
+                        )
+                    })
                 }
             )
         })
@@ -63,6 +69,12 @@ module.exports = function init(config, cb) {
         debug('Removing %s', options.name)
         if (options.name === null || options.name === undefined) return cb(new Error('name is required'))
         collection.findOneAndDelete({ name: options.name.toLowerCase() }, cb)
+    }
+
+    function deserialize(sequence, cb) {
+        var value = bigInt(sequence.value)
+        if (value.greater(Number.MAX_SAFE_INTEGER)) return cb(new Error('Sequence value exceeds Number.MAX_SAFE_INTEGER'))
+        cb(null, sequence)
     }
 
     function close(cb) {

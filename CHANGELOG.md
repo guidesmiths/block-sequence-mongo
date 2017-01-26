@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased]
+### Changed
+- Erroring when sequence exceeds Number.MAX_SAFE_INT
+
 ## [1.0.2]
 ### Changed
 - Fixed missing err check
