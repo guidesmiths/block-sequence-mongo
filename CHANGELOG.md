@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [1.0.2]
 ### Changed
 - Fixed missing err check
 
