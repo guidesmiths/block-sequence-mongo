@@ -1,5 +1,4 @@
 var debug = require('debug')('block-sequence:mongo')
-var MongoClient = require('mongodb').MongoClient
 var _ = require('lodash')
 var async = require('async')
 var bigInt = require('big-integer')
@@ -10,6 +9,7 @@ module.exports = function init(config, cb) {
     if (arguments.length === 1) return init({}, arguments[0])
     if (!config.url) return cb(new Error('url is required'))
 
+    var MongoClient = config.client || require('mongodb').MongoClient
     var db
     var collection
 

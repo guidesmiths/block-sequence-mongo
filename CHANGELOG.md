@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.2.0]
+## Changed
+- Updated dependencies
+- Add the ability to specifiy the mongo client
+
 ## [1.1.0]
 ### Changed
 - Erroring when sequence exceeds Number.MAX_SAFE_INT

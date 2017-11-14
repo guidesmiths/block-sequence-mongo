@@ -14,9 +14,10 @@ A MongoDB implementation of [block-sequence](https://www.npmjs.com/package/block
 ```js
 const BlockArray = require('block-sequence').BlockArray
 const init = require('block-sequence-mongo')
+const MongoClient = require('mongodb').MongoClient
 
 // Initialise the Mongo Block Sequence Driver
-init({ url: 'mongodb://localhost/sequences', options: { } }, (err, driver) => {
+init({ url: 'mongodb://localhost/sequences', client: MongoClient, options: { } }, (err, driver) => {
     if (err) throw err
 
     // Ensure the sequence exists
