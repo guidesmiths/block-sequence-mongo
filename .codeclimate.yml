@@ -17,4 +17,3 @@ checks:
 ratings:
   paths:
   - index.js
-  - lib/**
