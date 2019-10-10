@@ -1,5 +1,10 @@
 # Change Log
 
+## [2.0.0]
+## Changed
+- Updated mongo driver version to 3.0.11
+- Updated other dependencies
+
 ## [1.2.0]
 ## Changed
 - Updated dependencies

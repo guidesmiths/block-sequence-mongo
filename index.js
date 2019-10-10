@@ -10,11 +10,10 @@ module.exports = function init(config, cb) {
     if (!config.url) return cb(new Error('url is required'))
 
     var MongoClient = config.client || require('mongodb').MongoClient
-    var db
+    var client
     var collection
 
     function ensure(options, cb) {
-
         if (options.name === null || options.name === undefined) return cb(new Error('name is required'))
 
         var name = options.name.toLowerCase()
@@ -79,20 +78,19 @@ module.exports = function init(config, cb) {
     }
 
     function close(cb) {
-        db.close(cb)
+        client.close(cb)
     }
 
     function ensureCollection(cb) {
         debug('Ensuring gs_block_sequence collection')
-        collection = db.collection('gs_block_sequence')
-        collection = db.collection('gs_block_sequence')
+        collection = client.db().collection('gs_block_sequence')
         collection.createIndex({ name: 1 }, { unique: true, w: 1 }, cb)
     }
 
     function connect(cb) {
-        MongoClient.connect(config.url, config.options || {}, function(err, _db) {
+        MongoClient.connect(config.url, config.options || {}, function(err, _client) {
             if (err) return cb(err)
-            db = _db
+            client = _client
             return cb()
         })
     }
