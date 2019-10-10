@@ -4,15 +4,13 @@ services:
   - docker
 
 before_install:
-  - docker run --detach --publish 27017:27017 --name mongo mvertes/alpine-mongo
+  - docker run --detach --publish 27017:27017 --name mongo mvertes/alpine-mongo:mvertes/alpine-mongo:3.2.10-3
   - sleep 10
 
 language: node_js
 
 node_js:
-  - "4"
-  - "5"
-  - "6"
-  - "7"
   - "8"
+  - "10"
+  - "12"
 
