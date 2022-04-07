@@ -29,7 +29,7 @@
     "tap-spec": "^5.0.0"
   },
   "dependencies": {
-    "async": "^3.1.0",
+    "async": "^3.2.2",
     "big-integer": "^1.6.25",
     "debug": "^3.1.0",
     "lodash": "^4.17.15",
